@@ -9,6 +9,7 @@ app = Flask(__name__)
 client = MongoClient("mongodb+srv://dakshpatel:Daksh2004@cluster0.aqgsg24.mongodb.net/?appName=Cluster0")
 db = client['studentDB']         # Database name
 collection = db['students']      # Collection name
+todo_collection = db['todos']
 
 # ----------------------------
 # Route: Show Form
@@ -41,6 +42,22 @@ def submit():
 @app.route('/success')
 def success():
     return render_template('success.html')
+
+# From master_2: Handle To-Do Submission
+@app.route('/submittodoitem', methods=['POST'])
+def submit_todo():
+    # Get data from todo.html
+    item_name = request.form['itemName']
+    item_desc = request.form['itemDescription']
+
+    # Insert into the NEW 'todos' collection
+    todo_collection.insert_one({
+        "itemName": item_name,
+        "itemDescription": item_desc
+    })
+
+    # We can reuse the success page
+    return redirect(url_for('success'))
 
 # ----------------------------
 # Run the App
