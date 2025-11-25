@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+    <h2>Add a New To-Do Item</h2>
+    <form action="/submittodoitem" method="POST">
+        <label>Item Name:</label>
+        <input type="text" name="itemName" required><br><br>
+
+        <label>Item Description:</label>
+        <textarea name="itemDescription" required></textarea><br><br>
+
+        <input type="submit" value="Add Item">
+    </form>
+    <br>
+    <a href="/">Back to Student Form</a>
+</body>
+</html>

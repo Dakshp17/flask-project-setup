@@ -10,16 +10,12 @@ client = MongoClient("mongodb+srv://dakshpatel:Daksh2004@cluster0.aqgsg24.mongod
 db = client['studentDB']         # Database name
 collection = db['students']      # Collection name
 
-# ----------------------------
-# Route: Show Form
-# ----------------------------
+
 @app.route('/')
 def form():
     return render_template('form.html')
 
-# ----------------------------
-# Route: Handle Form Submission
-# ----------------------------
+
 @app.route('/submit', methods=['POST'])
 def submit():
     # Get data from the HTML form
@@ -35,15 +31,15 @@ def submit():
     # Redirect to success page
     return redirect(url_for('success'))
 
-# ----------------------------
-# Route: Success Page
-# ----------------------------
 @app.route('/success')
 def success():
     return render_template('success.html')
 
-# ----------------------------
+
+@app.route('/todo')
+def todo():
+    return render_template('todo.html')
+
 # Run the App
-# ----------------------------
 if __name__ == '__main__':
     app.run(debug=True)
